@@ -195,7 +195,7 @@ class NodeMixin(object):
                 msg = ("Cannot add non-node object %r. "
                        "It is not a subclass of 'NodeMixin'.") % child
                 raise TreeError(msg)
-            if child not in seen:
+            if not any([n is child for n in seen]):
                 seen.add(child)
             else:
                 msg = "Cannot add node %r multiple times as child." % child
